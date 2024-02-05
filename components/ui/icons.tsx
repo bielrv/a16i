@@ -121,6 +121,25 @@ function IconVercel({ className, ...props }: React.ComponentProps<'svg'>) {
   )
 }
 
+function IconA16i({ className, ...props }: React.ComponentProps<'svg'>) {
+  return (
+    <svg
+      aria-label="a16i logomark"
+      role="img"
+      viewBox="0 0 74 64" // Keeping the original viewBox for simplicity
+      className={className}
+      {...props}
+    >
+      {/* Simple abstract design for demonstration; replace with actual a16i design elements */}
+      <path
+        d="M0 32 L37 0 L74 32 L37 64 Z" // A diamond shape, symbolizing innovation/direction
+        fill="currentColor"
+      ></path>
+      {/* Additional elements could be added here to represent "i" or other aspects of a16i */}
+    </svg>
+  )
+}
+
 function IconGitHub({ className, ...props }: React.ComponentProps<'svg'>) {
   return (
     <svg
@@ -496,6 +515,7 @@ function IconChevronUpDown({
 export {
   IconEdit,
   IconNextChat,
+  IconA16i,
   IconOpenAI,
   IconVercel,
   IconGitHub,
