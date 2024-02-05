@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   const { messages, previewToken } = json
   const userId = (await auth())?.user.id
 
-  if (!userId) {
+   if (!userId) {
     return new Response('Unauthorized', {
       status: 401
     })

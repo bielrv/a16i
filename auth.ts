@@ -1,5 +1,5 @@
 import NextAuth, { type DefaultSession } from 'next-auth'
-import GitHub from 'next-auth/providers/github'
+// import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
 
 declare module 'next-auth' {
@@ -15,23 +15,23 @@ export const {
   handlers: { GET, POST },
   auth
 } = NextAuth({
-  providers: [GitHub,Google({
+  providers: [Google({
     clientId: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   })],
   callbacks: {
-    jwt({ token, profile }) {
-      if (profile) {
-        token.id = profile.id
-        token.image = profile.avatar_url || profile.picture
+    async jwt({ token, account, profile }) {
+      // Assuming the `id` comes from the profile for a new sign-in
+      if (account && profile) {
+        token.id = profile.sub; // `sub` is the standard claim representing the user ID in OAuth
       }
-      return token
+      return token;
     },
-    session: ({ session, token }) => {
-      if (session?.user && token?.id) {
-        session.user.id = String(token.id)
+    session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.sub as string;
       }
-      return session
+      return session;
     },
     authorized({ auth }) {
       return !!auth?.user // this ensures there is a logged in user for -every- request
