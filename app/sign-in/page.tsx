@@ -10,7 +10,11 @@ export default async function SignInPage() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-theme(spacing.16))] items-center justify-center py-10">
+    <div className="flex flex-col h-[calc(100vh-theme(spacing.16))] items-center justify-center py-10">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold">Welcome to A16i</h1>
+        <p className="text-lg">Your personal mentor for personal and profesional growth.</p>
+      </div>
       <LoginButton />
     </div>
   )
